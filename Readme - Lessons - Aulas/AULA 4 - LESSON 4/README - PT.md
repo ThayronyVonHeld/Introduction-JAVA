@@ -46,9 +46,16 @@ public class PrimeiroPrograma { // Classe (bloco principal)
 
 Muitas IDEs oferecem **atalhos de código** (ex.: IntelliJ IDEA):
 
-* Digite `psvm` → gera automaticamente o `public static void main(String[] args) { ... }`
-* Digite `sout` → gera automaticamente `System.out.print()`
+* Digite `psvm` → gera automaticamente o
+  
+ ```java
+ public static void main(String[] args) { ... }
+```
+* Digite `sout` → gera automaticamente 
 
+```java
+System.out.print()
+```
 ---
 
 ### CamelCase 🐪
