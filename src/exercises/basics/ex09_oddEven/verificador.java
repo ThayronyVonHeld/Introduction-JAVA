@@ -1,8 +1,6 @@
 package ex09_oddEven;
 
-import java.awt.*;
 import java.util.Scanner;
-import ex09_oddEven.Main;
 
 public class verificador {
     public static void main(String[] args) {

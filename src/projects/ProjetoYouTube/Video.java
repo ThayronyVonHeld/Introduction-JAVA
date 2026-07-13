@@ -1,4 +1,4 @@
-package ProjetoYouTube;
+package projects.ProjetoYouTube;
 
 public class Video implements AcoesVideo{
 

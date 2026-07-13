@@ -1,4 +1,4 @@
-package ProjetoYouTube;
+package projects.ProjetoYouTube;
 
 public class Main {
     public static void main(String[] args) {

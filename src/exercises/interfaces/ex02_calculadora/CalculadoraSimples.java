@@ -1,4 +1,4 @@
-package ex04_simple_calculator;
+package exercises.interfaces.ex02_calculadora;
 
 public class CalculadoraSimples extends javax.swing.JFrame {
 
