@@ -1,4 +1,4 @@
-package ex06_specialMethods.GetSetters;
+package exercises.oop.ex06_specialMethods.GetSetters;
 
 public class Aula04 {
     public static void main(String[] args) {

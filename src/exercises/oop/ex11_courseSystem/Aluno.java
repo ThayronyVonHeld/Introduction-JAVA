@@ -1,4 +1,4 @@
-package ex11_courseSystem;
+package exercises.oop.ex11_courseSystem;
 
 public class Aluno extends Pessoa{
     private int matricula;

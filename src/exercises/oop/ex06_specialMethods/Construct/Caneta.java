@@ -1,4 +1,4 @@
-package ex06_specialMethods.Construct;
+package exercises.oop.ex06_specialMethods.Construct;
 
 public class Caneta {
    public String modelo;

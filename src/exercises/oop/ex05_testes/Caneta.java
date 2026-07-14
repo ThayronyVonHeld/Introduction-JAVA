@@ -1,4 +1,4 @@
-package ex05_testes;
+package exercises.oop.ex05_testes;
 
 /*
 No intellij clicando com Alt + i, irá abrir uma janera "Generate" e com ela

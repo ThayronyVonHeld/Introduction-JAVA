@@ -1,4 +1,4 @@
-package ex07_remoteControl;
+package exercises.oop.ex07_remoteControl;
 
 public interface Controlador {
     public abstract void ligar();

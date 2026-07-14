@@ -1,4 +1,4 @@
-package ex02_jokenpo;
+package exercises.oop.ex02_jokenpo;
 
 import java.util.Scanner;
 

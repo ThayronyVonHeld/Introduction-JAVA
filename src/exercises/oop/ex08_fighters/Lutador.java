@@ -1,4 +1,4 @@
-package ex08_fighters;
+package exercises.oop.ex08_fighters;
 
 public class Lutador {
     //atributos

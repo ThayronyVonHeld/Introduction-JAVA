@@ -1,4 +1,4 @@
-package ex11_courseSystem;
+package exercises.oop.ex11_courseSystem;
 
 public class Bolsista extends Aluno{
     private float bolsa;

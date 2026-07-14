@@ -1,4 +1,4 @@
-package ex14_library;
+package exercises.oop.ex14_library;
 
 public interface Publicacao {
 

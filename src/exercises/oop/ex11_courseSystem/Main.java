@@ -1,4 +1,4 @@
-package ex11_courseSystem;
+package exercises.oop.ex11_courseSystem;
 
 public class Main {
     public static void main(String[] args) {

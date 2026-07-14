@@ -1,4 +1,4 @@
-package ex10_person;
+package exercises.oop.ex10_person;
 
 public class Funcionario extends Pessoa{
     private String setor;

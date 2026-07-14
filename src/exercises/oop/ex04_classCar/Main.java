@@ -1,4 +1,4 @@
-package ex04_classCar;
+package exercises.oop.ex04_classCar;
 
 public class Main {
     public static void main(String[] args) {

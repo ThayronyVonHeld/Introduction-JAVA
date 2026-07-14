@@ -1,4 +1,4 @@
-package ex14_library;
+package exercises.oop.ex14_library;
 
 public class Pessoa {
     private String nome;

@@ -1,4 +1,4 @@
-package ex03_smartphone;
+package exercises.oop.ex03_smartphone;
 
 public class Main {
     public static void main(String[] args) {

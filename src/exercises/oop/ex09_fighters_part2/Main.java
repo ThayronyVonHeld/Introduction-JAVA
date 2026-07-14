@@ -1,4 +1,4 @@
-package ex09_fighters_part2;
+package exercises.oop.ex09_fighters_part2;
 
 public class Main {
     public static void main(String[] args) {

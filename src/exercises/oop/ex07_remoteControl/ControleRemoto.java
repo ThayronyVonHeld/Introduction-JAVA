@@ -1,4 +1,4 @@
-package ex07_remoteControl;
+package exercises.oop.ex07_remoteControl;
 
 public class ControleRemoto implements Controlador{
 

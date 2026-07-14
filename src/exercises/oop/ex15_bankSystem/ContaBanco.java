@@ -1,4 +1,4 @@
-package ex15_bankSystem;
+package exercises.oop.ex15_bankSystem;
 
 import java.util.Scanner;
 

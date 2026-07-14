@@ -1,4 +1,4 @@
-package ex13_zoo_pat2;
+package exercises.oop.ex13_zoo_pat2;
 
 public class Cachorro extends Lobo {
 
