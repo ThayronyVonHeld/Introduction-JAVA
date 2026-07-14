@@ -1,4 +1,4 @@
-package ex01_pen;
+package exercises.oop.ex01_pen;
 
 public class Caneta {
         String modelo;

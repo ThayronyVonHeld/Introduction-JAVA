@@ -1,4 +1,4 @@
-package ex03_smartphone;
+package exercises.oop.ex03_smartphone;
 
 public class Smartphone {
         String modelo;

@@ -1,4 +1,4 @@
-package ex11_courseSystem;
+package exercises.oop.ex11_courseSystem;
 
 public abstract class Pessoa {
     private String nome;

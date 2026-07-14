@@ -1,4 +1,4 @@
-package ex06_specialMethods.GetSetters;
+package exercises.oop.ex06_specialMethods.GetSetters;
 
 public class Caneta {
    public String modelo;

@@ -1,4 +1,4 @@
-package ex12_zoo;
+package exercises.oop.ex12_zoo;
 
 public class Main {
     public static void main(String[] args) {
