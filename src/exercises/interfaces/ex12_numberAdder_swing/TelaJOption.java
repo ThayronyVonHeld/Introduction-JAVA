@@ -1,4 +1,4 @@
-package ex20_numberAdder_swing;
+package exercises.interfaces.ex12_numberAdder_swing;
 
 import javax.swing.JOptionPane; // Classe que "faz" interface automática
 

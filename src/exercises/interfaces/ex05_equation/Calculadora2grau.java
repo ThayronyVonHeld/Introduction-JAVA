@@ -1,4 +1,4 @@
-package ex08_equation;
+package exercises.interfaces.ex05_equation;
 
 public class Calculadora2grau extends javax.swing.JFrame {
 

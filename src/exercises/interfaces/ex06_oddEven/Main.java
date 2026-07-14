@@ -1,4 +1,4 @@
-package exercises.interfaces.ex6_oddEven;
+package exercises.interfaces.ex06_oddEven;
 
 public class Main extends javax.swing.JFrame {
 

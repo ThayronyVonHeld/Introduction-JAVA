@@ -1,4 +1,4 @@
-package ex26_vector_swing;
+package exercises.interfaces.ex14_vector_swing;
 
 
 import java.util.Arrays;

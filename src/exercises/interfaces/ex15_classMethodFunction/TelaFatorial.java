@@ -1,4 +1,4 @@
-package exercises.interfaces.ex30_classMethodFunction;
+package exercises.interfaces.ex15_classMethodFunction;
 
 public class TelaFatorial extends javax.swing.JFrame {
 

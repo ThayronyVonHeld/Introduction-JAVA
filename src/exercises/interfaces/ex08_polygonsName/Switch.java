@@ -1,4 +1,4 @@
-package ex13_polygonsName;
+package exercises.interfaces.ex08_polygonsName;
 public class Switch extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Switch.class.getName());

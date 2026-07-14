@@ -1,5 +1,5 @@
 
-package ex32_raffle;
+package exercises.interfaces.ex16_raffle;
 
 import java.awt.Font;
 

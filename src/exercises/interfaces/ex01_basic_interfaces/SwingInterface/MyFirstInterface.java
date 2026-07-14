@@ -2,7 +2,7 @@
 /*
  * Feito no JavaBeans, o codigo importei para o Intellij e apenas adaptei o nome do pacote
  */
-package ex02_basic_interfaces.SwingInterface;
+package exercises.interfaces.ex01_basic_interfaces.SwingInterface;
 
 /**
  *

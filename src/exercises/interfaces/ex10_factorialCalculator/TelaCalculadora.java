@@ -1,4 +1,4 @@
-package ex15_factorialCalculator;
+package exercises.interfaces.ex10_factorialCalculator;
 
 
 public class TelaCalculadora extends javax.swing.JFrame {

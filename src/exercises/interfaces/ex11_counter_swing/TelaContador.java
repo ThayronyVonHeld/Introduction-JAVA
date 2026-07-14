@@ -1,4 +1,4 @@
-package ex17_counter_swing;
+package exercises.interfaces.ex11_counter_swing;
 
 public class TelaContador extends javax.swing.JFrame {
 

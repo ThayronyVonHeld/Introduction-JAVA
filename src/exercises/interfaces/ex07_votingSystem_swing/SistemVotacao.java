@@ -1,4 +1,4 @@
-package ex12_votingSystem_swing;
+package exercises.interfaces.ex07_votingSystem_swing;
 
 public class SistemVotacao extends javax.swing.JFrame {
 

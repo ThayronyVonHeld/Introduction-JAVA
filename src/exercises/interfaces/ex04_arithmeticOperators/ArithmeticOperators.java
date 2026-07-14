@@ -1,4 +1,4 @@
-package ex06_arithmeticOperators;
+package exercises.interfaces.ex04_arithmeticOperators;
 
 public class ArithmeticOperators extends javax.swing.JFrame {
 

@@ -1,4 +1,4 @@
-package ex14_typesTriangles;
+package exercises.interfaces.ex09_typesTriangles;
 
 
 public class TiposTriangulos extends javax.swing.JFrame {

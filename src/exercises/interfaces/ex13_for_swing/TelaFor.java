@@ -1,4 +1,4 @@
-package ex22_for_swing;
+package exercises.interfaces.ex13_for_swing;
 
 
 import javax.swing.DefaultListModel;
