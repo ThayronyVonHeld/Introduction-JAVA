@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<AnchorPane prefHeight="434.0" prefWidth="663.0" style="-fx-background-color: lightblue;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="projects.ContactsPhone.phoneController">
+   <children>
+      <ListView fx:id="listctt" layoutX="63.0" layoutY="56.0" prefHeight="350.0" prefWidth="569.0" style="-fx-background-color: gray;" />
+      <Button layoutX="63.0" layoutY="14.0" mnemonicParsing="false" onAction="#addContatos" text="Adicionar" />
+      <Button layoutX="479.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Editar" />
+      <Pane fx:id="paineadd" layoutX="195.0" layoutY="108.0" prefHeight="243.0" prefWidth="331.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="105.0" layoutY="14.0" text="Adicionar Contato" />
+            <Label layoutX="69.0" layoutY="61.0" text="Nome" />
+            <Label layoutX="62.0" layoutY="102.0" text="Telefone" />
+            <TextField fx:id="name" layoutX="116.0" layoutY="57.0" prefHeight="25.0" prefWidth="129.0" />
+            <TextField fx:id="telefone" layoutX="116.0" layoutY="98.0" prefHeight="25.0" prefWidth="129.0" />
+            <SplitMenuButton layoutX="108.0" layoutY="150.0" mnemonicParsing="false" text="Atribua a Praça">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </SplitMenuButton>
+            <Button layoutX="36.0" layoutY="197.0" mnemonicParsing="false" onAction="#atualizarcontatos" text="Salvar" />
+            <Button layoutX="252.0" layoutY="197.0" mnemonicParsing="false" onAction="#initialize" text="Cancelar" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
