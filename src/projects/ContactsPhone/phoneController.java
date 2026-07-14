@@ -16,17 +16,16 @@ public class phoneController {
 
     private ObservableList<String> ctt = FXCollections.observableArrayList();
 
-    String nome = name.getText();
-    String tel = telefone.getText();
-
     @FXML
     public void initialize() {
         paineadd.setVisible(false);
-        listctt.setItems(ctt);
+
     }
 
 
     public void addContatos(){
+        name.clear();
+        telefone.clear();
         paineadd.setVisible(true);
 
     }
@@ -37,8 +36,7 @@ public class phoneController {
                 name.getText(),
                 telefone.getText()));
 
-        name.clear();
-        telefone.clear();
+        listctt.setItems(ctt);
 
         paineadd.setVisible(false);
     }
