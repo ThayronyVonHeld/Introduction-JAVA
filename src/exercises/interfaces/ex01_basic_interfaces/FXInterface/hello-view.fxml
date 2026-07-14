@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="ex02_basic_interfaces.FXInterface.HelloController" spacing="10" alignment="CENTER">
+      fx:controller="exercises.interfaces.ex01_basic_interfaces.FXInterface.HelloController" spacing="10" alignment="CENTER">
 
      <Label fx:id="label" text="Olá, JavaFX com FXML!" />
     <Button text="Clique aqui" onAction="#onHelloButtonClick"/>

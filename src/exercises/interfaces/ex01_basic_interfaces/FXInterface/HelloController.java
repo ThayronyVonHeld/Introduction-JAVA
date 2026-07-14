@@ -1,4 +1,4 @@
-package ex02_basic_interfaces.FXInterface;
+package exercises.interfaces.ex01_basic_interfaces.FXInterface;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
