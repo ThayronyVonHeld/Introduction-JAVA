@@ -163,12 +163,3 @@ Licença MIT
 </div>
 
 ---
-
-Se quiser, dá pra ir ainda mais longe:
-
-* deixar PT e EN **100% alinhados linha por linha**
-* criar **README dos projetos (task-manager, etc.) no mesmo padrão**
-* adicionar **preview visual (prints, gifs)**
-
-Mas do jeito que tá agora?
-👉 Já é repo que **passa profissionalismo de verdade**.
