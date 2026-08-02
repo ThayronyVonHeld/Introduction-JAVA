@@ -100,6 +100,8 @@ Map
 
 Isso acontece porque o `Map` trabalha com pares **chave → valor**, enquanto as coleções tradicionais armazenam apenas elementos.
 
+
+![Hierarchy of Collection Framework in Java](https://data-flair.training/blogs/wp-content/uploads/sites/2/2018/03/hierarchy-of-collection-framework-in-java.webp)
 ---
 
 # ⚡ O que é Complexidade Big-O?
