@@ -2,6 +2,7 @@ package exercises.Collections.ex04;
 
 import java.io.PipedOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Mercado {
@@ -14,7 +15,11 @@ public class Mercado {
         mercadorias.add(new Produtos(2, "Feijão", 5.4));
         mercadorias.add(new Produtos(4, "Ovos", 9.99));
 
+        Collections.sort(mercadorias);
 
+        for (Produtos mercado : mercadorias){
+            System.out.println(mercado);
+        }
 
 
 

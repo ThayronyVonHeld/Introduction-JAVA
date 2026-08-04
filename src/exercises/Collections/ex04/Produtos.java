@@ -64,11 +64,11 @@ public class Produtos implements Comparable<Produtos>{
 
 
     @Override
-    public int compareTo(Produtos outroproduto) {
+    public int compareTo(Produtos o) {
 
-       if(this.id < outroproduto.getId()){
+       if(this.id < o.getId()){
            return -1;
-       } else if (this.id.equals(outroproduto.getId())){
+       } else if (this.id == o.getId()) {
         return 0;
        } else {
            return 1;
