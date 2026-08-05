@@ -66,12 +66,8 @@ public class Produtos implements Comparable<Produtos>{
     @Override
     public int compareTo(Produtos o) {
 
-       if(this.id < o.getId()){
-           return -1;
-       } else if (this.id == o.getId()) {
-        return 0;
-       } else {
-           return 1;
-       }
+        // return Long.compare(this.id, o.getId()); // ordenando pelo id, como id é tipo primitivo deve ser feito dessa forma
+        return this.nome.compareTo(o.getNome()); // Ordenando pelo nome
+
     }
 }

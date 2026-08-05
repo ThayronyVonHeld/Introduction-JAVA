@@ -1,84 +1,355 @@
-Esta parte 1 do estudo sobre coleções(Sorting lists) foca na **ordenação de listas** (*sorting lists*), explorando desde a facilidade de organizar tipos primitivos e Strings até os desafios técnicos de ordenar objetos customizados.
-
-Abaixo, os conceitos fundamentais detalhados na fonte:
-
-### 1. A Classe Utilitária `Collections`
-Para realizar a ordenação de uma lista, a forma mais comum é utilizar a classe **`Collections`** (no plural), que funciona como uma classe facilitadora repleta de **métodos estáticos**.
-*   O método **`Collections.sort(lista)`** é o responsável por reorganizar os elementos dentro da coleção.
-*   É importante não confundir a interface `Collection` (singular) com a classe utilitária `Collections` (plural).
-
-### 2. Ordenação de Tipos Básicos
-O Java já possui uma lógica de ordenação padrão para tipos comuns:
-*   **Strings:** São ordenadas de forma **alfabética**.
-*   **Números (`Double`, `Integer`):** São ordenados do **menor para o maior** (ordem crescente).
-*   **Algoritmos e Performance:** Internamente, o Java utiliza algoritmos de ordenação que visam a melhor performance, variando conforme a implementação da estrutura de dados.
-
-### 3. O Problema da Ordenação de Objetos Customizados
-Ao tentar utilizar o `Collections.sort()` em uma lista de objetos criados pelo desenvolvedor (como uma lista de `Smartphone` ou `Mangá`), ocorre um **erro de compilação**.
-*   **Causa do Erro:** O Java não sabe qual atributo deve ser usado como base para a ordenação. Ele "pergunta" ao desenvolvedor se deve ordenar pelo nome, pelo ID, pelo preço ou por outro critério, e como essa resposta não existe por padrão, o código não compila.
-
-### 4. Preparação da Classe para Coleções
-Para que uma classe (como a classe `Mangá` criada no exemplo) funcione corretamente dentro de frameworks de coleções e buscas, ela deve seguir boas práticas de estrutura:
-*   **Atributos Reais:** Inclusão de campos como `id`, `nome` e `preco`.
-*   **Sobrescrita de `equals` e `hashCode`:** É essencial gerar esses métodos (geralmente via IDE) para garantir que o Java consiga identificar e comparar os objetos dentro da lista de forma única.
-*   **Garantia de Não-Nulidade:** O uso de métodos como `Objects.requireNonNull` é recomendado para assegurar que atributos críticos (como nome ou ID) não sejam nulos, evitando erros de execução do tipo `NullPointerException` durante processos de comparação ou ordenação.
-
-### 5. Próximos Passos
-A fonte prepara o terreno para a introdução de como definir a lógica de comparação (que será detalhada em aulas futuras), permitindo que o desenvolvedor especifique manualmente qual atributo definirá a ordem da lista.
+# 📚 Aula 07 - Ordenando Listas com `Comparable` e `Comparator`
 
 ---
 
-Esta parte 2 do estudo sobre coleções(Sorting lists) foca na interface **`Comparable`**, que é a solução técnica para permitir que o Java ordene listas de objetos customizados (como a classe `Mangá`).
+# 🎯 Objetivos da Aula
 
-Abaixo, apresento um resumo detalhado dos conceitos centrais:
-
-### 1. A Necessidade da Interface `Comparable`
-Diferente de `Strings` ou números, que o Java já sabe como ordenar (por ordem alfabética ou crescente), objetos criados pelo desenvolvedor não possuem uma ordem natural definida. Para que o método `Collections.sort()` funcione com esses objetos, a classe deve obrigatoriamente implementar a interface **`Comparable<T>`**, onde `T` é o tipo da própria classe (ex: `Comparable<Manga>`).
-
-### 2. O Método `compareTo`
-Ao implementar a interface, o desenvolvedor deve sobrescrever o método **`compareTo`**. Este método é o "coração" da lógica de ordenação e segue uma regra de retorno baseada em números inteiros para definir a precedência entre o objeto atual (`this`) e o objeto comparado:
-*   **Retorno Negativo:** Indica que o objeto atual é **menor** que o objeto passado como argumento.
-*   **Retorno Zero:** Indica que ambos os objetos são **iguais**.
-*   **Retorno Positivo:** Indica que o objeto atual é **maior** que o objeto passado.
-
-### 3. Implementação Manual vs. Delegação de Responsabilidade
-Embora seja possível escrever a lógica de comparação manualmente usando estruturas `if` para retornar -1, 0 ou 1, a fonte destaca que a melhor prática é **delegar essa responsabilidade** para as classes utilitárias do Java:
-
-*   **Para Objetos e Wrappers (`String`, `Long`, `Double`):** Como essas classes já implementam `Comparable`, basta chamar o `compareTo` delas. Exemplo: `this.nome.compareTo(outroManga.getNome())`.
-*   **Para Tipos Primitivos:** Como tipos primitivos (como `double` para preço) não possuem métodos, deve-se usar os métodos estáticos das classes Wrapper, como **`Double.compare(valor1, valor2)`**, que já retornam os valores inteiros corretos para a ordenação.
-
-### 4. Funcionamento Interno e Execução
-Uma vez que o método `compareTo` está implementado na classe `Mangá`, o desenvolvedor pode simplesmente chamar **`Collections.sort(listaMangas)`**.
-*   Internamente, o Java percorre a lista e utiliza a lógica definida no `compareTo` para decidir quais objetos devem trocar de posição.
-*   Se a interface não for implementada, o código resultará em um **erro de compilação**, pois o método `sort` exige que os elementos da lista sejam "comparáveis".
-
-### 5. Flexibilidade de Atributos
-A fonte demonstra que é possível alterar o critério de ordenação de toda a lista apenas mudando o atributo dentro do método `compareTo`. É possível ordenar por **ID** (numérico), por **Preço** (numérico decimal) ou por **Nome** (ordem alfabética), dependendo da necessidade do sistema. A recomendação final é sempre buscar delegar a comparação para as classes do próprio Java para evitar erros e reduzir a quantidade de código manual.
+* Compreender como funciona a ordenação de listas em Java
+* Utilizar a classe utilitária `Collections`
+* Entender a interface `Comparable`
+* Conhecer a interface `Comparator`
+* Saber quando utilizar cada abordagem de ordenação
 
 ---
 
-Esta ultima parte do estudo sobre coleções introduz a interface **`Comparator`**, apresentando-a como uma alternativa mais flexível e poderosa à interface `Comparable` para a ordenação de listas.
+# 🧠 Ordenando Coleções
 
-Abaixo, os conceitos fundamentais detalhados na fonte:
+Uma das operações mais comuns em aplicações é ordenar dados.
 
-### 1. O Problema da Rigidez do `Comparable`
-A fonte explica que, embora o `Comparable` defina a "ordem natural" de um objeto (como ordenar Mangás por nome), ele pode se tornar um problema em sistemas grandes. Se você alterar a lógica do método `compareTo` dentro da classe principal para ordenar por ID em vez de Nome, poderá causar erros em diversas partes do software que dependiam da ordenação original, gerando o que o instrutor chama de "inferno na terra".
+Exemplos:
 
-### 2. A Interface `Comparator`
-O `Comparator` surge como uma solução para criar **ordenações customizadas** sem alterar a classe original do objeto.
-*   **Método `compare(T o1, T o2)`:** Diferente do `Comparable` (que usa `compareTo` e compara o objeto atual com outro), o `Comparator` utiliza o método `compare`, que recebe **dois objetos** como argumentos para comparação.
-*   **Implementação Externa:** Geralmente, cria-se uma nova classe específica para essa lógica, como `MangaByIdComparator`, que implementa `Comparator<Manga>`.
-*   **Regra de Retorno:** A lógica de retorno permanece a mesma: um número negativo se o primeiro objeto for menor, zero se forem iguais e um número positivo se o primeiro for maior.
+* Lista de produtos por preço
+* Usuários por nome
+* Funcionários por matrícula
+* Mangás por título
 
-### 3. Flexibilidade na Ordenação
-A grande vantagem do `Comparator` é permitir que o desenvolvedor escolha qual critério usar em cada situação específica:
-*   **`Collections.sort(lista)`:** Utiliza a ordem natural definida pelo `Comparable` na classe do objeto (ex: por Nome).
-*   **`Collections.sort(lista, comparator)`:** Esta versão sobrecarregada permite passar uma instância do seu comparador customizado, ignorando a ordem natural e ordenando, por exemplo, por ID.
+O Java facilita esse processo através da classe utilitária **`Collections`**.
 
-### 4. O Método `sort` da Própria Lista
-Além da classe utilitária `Collections`, a própria interface `List` possui um método **`sort`**.
-*   Diferente do `Collections.sort()`, o método `lista.sort(comparator)` **exige** obrigatoriamente que um objeto `Comparator` seja passado como argumento.
-*   Esta é considerada uma forma mais moderna e legível de realizar a ordenação diretamente na coleção.
+---
 
-### 5. Resumo Técnico
-O uso de `Comparator` é recomendado sempre que você precisar de múltiplas formas de ordenar os mesmos dados ou quando não puder (ou não quiser) alterar o código-fonte da classe original para implementar `Comparable`. A fonte também menciona que existem formas ainda mais simples de implementar comparadores usando **classes anônimas**, embora esse tema seja deixado para aulas futuras.
+# 🛠 Classe `Collections`
+
+A classe **`Collections`** (plural) oferece diversos métodos estáticos para manipular coleções.
+
+O principal deles é:
+
+```java
+Collections.sort(lista);
+```
+
+Exemplo:
+
+```java
+List<String> nomes = new ArrayList<>();
+
+nomes.add("Carlos");
+nomes.add("Ana");
+nomes.add("Bruno");
+
+Collections.sort(nomes);
+
+System.out.println(nomes);
+```
+
+Saída:
+
+```text
+[Ana, Bruno, Carlos]
+```
+
+> 💡 Não confunda **`Collection`** (interface) com **`Collections`** (classe utilitária).
+
+---
+
+# 🔢 Ordenação de Tipos Básicos
+
+O Java já conhece a ordem natural de alguns tipos.
+
+| Tipo        | Ordem padrão  |
+| ----------- | ------------- |
+| `String`    | Alfabética    |
+| `Integer`   | Crescente     |
+| `Double`    | Crescente     |
+| `Long`      | Crescente     |
+| `Character` | Ordem Unicode |
+
+Exemplo:
+
+```java
+List<Integer> numeros = Arrays.asList(8, 2, 15, 5);
+
+Collections.sort(numeros);
+
+System.out.println(numeros);
+```
+
+Saída:
+
+```text
+[2, 5, 8, 15]
+```
+
+---
+
+# ❓ O problema com Objetos Personalizados
+
+Imagine a classe:
+
+```java
+public class Manga {
+
+    private Long id;
+    private String nome;
+    private Double preco;
+
+}
+```
+
+Agora tente ordenar:
+
+```java
+Collections.sort(listaMangas);
+```
+
+O código não compila.
+
+Mas por quê?
+
+O Java não sabe qual atributo utilizar.
+
+Deve ordenar por:
+
+* Nome?
+* ID?
+* Preço?
+
+É o desenvolvedor quem deve definir essa regra.
+
+---
+
+# 📚 Interface `Comparable`
+
+Quando uma classe possui uma **ordem natural**, ela deve implementar a interface:
+
+```java
+Comparable<T>
+```
+
+Exemplo:
+
+```java
+public class Manga
+        implements Comparable<Manga> {
+}
+```
+
+Ao implementar essa interface, torna-se obrigatório sobrescrever o método:
+
+```java
+compareTo()
+```
+
+---
+
+# ⚙️ Método `compareTo()`
+
+O método compara o objeto atual (`this`) com outro objeto.
+
+```java
+@Override
+public int compareTo(Manga outro) {
+
+}
+```
+
+O retorno segue sempre a mesma regra:
+
+| Retorno | Significado                 |
+| ------- | --------------------------- |
+| `< 0`   | Este objeto é menor         |
+| `0`     | Os objetos são equivalentes |
+| `> 0`   | Este objeto é maior         |
+
+---
+
+# ✨ Comparando por Nome
+
+Como `String` já implementa `Comparable`, basta delegar a comparação.
+
+```java
+@Override
+public int compareTo(Manga outro) {
+    return this.nome.compareTo(outro.nome);
+}
+```
+
+Agora:
+
+```java
+Collections.sort(listaMangas);
+```
+
+A lista será ordenada alfabeticamente pelo nome.
+
+---
+
+# 🔢 Comparando valores numéricos
+
+Para tipos numéricos, utilize os métodos das classes Wrapper.
+
+```java
+@Override
+public int compareTo(Manga outro) {
+    return Double.compare(this.preco, outro.preco);
+}
+```
+
+Também seria possível comparar pelo ID:
+
+```java
+return Long.compare(this.id, outro.id);
+```
+
+Essa abordagem evita implementações manuais com diversos `if` e torna o código mais simples e seguro.
+
+---
+
+# ⚠️ Limitação do `Comparable`
+
+O `Comparable` define apenas **uma ordem natural**.
+
+Por exemplo:
+
+```text
+Manga
+   ↓
+Ordenação por Nome
+```
+
+Mas e se outro ponto do sistema precisar ordenar por preço?
+
+Ou por ID?
+
+Alterar o `compareTo()` sempre que necessário não é uma boa prática, pois pode afetar outras partes da aplicação.
+
+---
+
+# 🔀 Interface `Comparator`
+
+Para criar diferentes formas de ordenação, utilizamos a interface:
+
+```java
+Comparator<T>
+```
+
+Normalmente, a lógica fica em uma classe separada.
+
+```java
+public class MangaByIdComparator
+        implements Comparator<Manga> {
+}
+```
+
+---
+
+# ⚙️ Método `compare()`
+
+O método recebe dois objetos para comparação.
+
+```java
+@Override
+public int compare(Manga m1, Manga m2) {
+
+}
+```
+
+A regra de retorno continua sendo a mesma:
+
+| Retorno | Significado                |
+| ------- | -------------------------- |
+| `< 0`   | Primeiro objeto vem antes  |
+| `0`     | São equivalentes           |
+| `> 0`   | Primeiro objeto vem depois |
+
+---
+
+# 💻 Exemplo
+
+Ordenando por ID:
+
+```java
+@Override
+public int compare(Manga m1, Manga m2) {
+
+    return Long.compare(
+            m1.getId(),
+            m2.getId()
+    );
+}
+```
+
+Agora basta informar qual comparador será utilizado.
+
+```java
+Collections.sort(
+        listaMangas,
+        new MangaByIdComparator()
+);
+```
+
+---
+
+# 📌 Método `sort()` da própria `List`
+
+Além da classe `Collections`, a própria interface `List` possui um método de ordenação.
+
+```java
+listaMangas.sort(new MangaByIdComparator());
+```
+
+Essa é uma alternativa mais moderna e legível para ordenar listas utilizando um `Comparator`.
+
+---
+
+# ⚖️ Comparable × Comparator
+
+| `Comparable`                   | `Comparator`                        |
+| ------------------------------ | ----------------------------------- |
+| Ordem natural do objeto        | Ordem personalizada                 |
+| Implementado na própria classe | Implementado externamente           |
+| Método `compareTo()`           | Método `compare()`                  |
+| Apenas um critério principal   | Permite vários critérios diferentes |
+
+---
+
+# 📌 Resumo
+
+| Conceito             | Descrição                                                 |
+| -------------------- | --------------------------------------------------------- |
+| `Collections.sort()` | Ordena listas utilizando a ordem natural ou um comparador |
+| `Comparable`         | Define a ordem natural do objeto                          |
+| `compareTo()`        | Método utilizado pelo `Comparable`                        |
+| `Comparator`         | Permite criar ordenações alternativas                     |
+| `compare()`          | Método utilizado pelo `Comparator`                        |
+| `List.sort()`        | Forma moderna de ordenar listas com um `Comparator`       |
+
+---
+
+# 🎓 Dicas Importantes
+
+* ✅ Utilize `Collections.sort()` para ordenar listas de forma simples.
+* ✅ Implemente `Comparable` quando a classe possuir uma ordem natural (como nome ou código).
+* ✅ Utilize `Comparator` quando precisar de múltiplos critérios de ordenação.
+* ✅ Prefira delegar comparações para métodos prontos, como `String.compareTo()`, `Long.compare()` e `Double.compare()`.
+* ✅ Evite alterar constantemente o `compareTo()` da classe; isso pode impactar outras partes da aplicação.
+* ✅ A própria interface `List` possui o método `sort()`, que oferece uma forma mais moderna de ordenar coleções.
+
+---
+
+## 💡 Conclusão
+
+O Java oferece um mecanismo poderoso e flexível para ordenação de coleções. Enquanto o **`Comparable`** define a **ordem natural** de um objeto, o **`Comparator`** permite criar diferentes estratégias de ordenação sem modificar a classe original.
+
+Na prática, ambos trabalham em conjunto e são amplamente utilizados em aplicações que precisam organizar dados por diferentes critérios, como nome, preço, data ou identificador.
+
+---
